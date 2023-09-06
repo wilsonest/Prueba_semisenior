@@ -1,0 +1,12 @@
+Create database Escalar_Risco
+use Escalar_Risco
+
+create table tblPropiedadesElementos(
+Nombre varchar(100),
+Peso int,
+Calorias int,
+)
+
+insert into tblPropiedadesElementos values ('E1',5,3),('E2',3,5),('E3',5,2),('E4',1,8),('E5',2,3)
+
+select * from tblPropiedadesElementos

@@ -1,0 +1,95 @@
+﻿@model List<Escalar_Risco.Models.PropiedadesElementos>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>CrearProduct</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/Escalar_Risco.styles.css" asp-append-version="true" />
+</head>
+<body>
+        <div class="container">
+            <h1 class="Titulo">Elementos Para Escalar</h1>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Peso</th>
+                        <th>Calorias</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.Nombre</td>
+                            <td>@item.Peso</td>
+                            <td>@item.Calorias</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    
+        <div class="container">
+                <form action="@Url.Action("Valores","PropiedadesElementos")" method="post" enctype="multipart/form-data">
+                <div class="pro">
+                    <div class="mb3">
+
+                            <label for="Calorias" class="form-label">Seleccione la cantidad mínima de calorías</label>
+                            <select class="form-select" aria-label="Seleccione la cantidad mínima" name="Calorias">
+                                @for (var i = 2; i <= 21; i++)
+                                {
+                                    <option value="@i">@i</option>
+                                }
+                            </select>
+
+                            <label for="Peso" class="form-label">Seleccione el peso maximo</label>
+                            <select class="form-select" aria-label="Seleccione el peso maximo" name="Peso">
+                                @for (var i = 1; i <= 16; i++)
+                                {
+                                    <option value="@i">@i</option>
+                                }
+                            </select>
+
+                    <button type="submit" class="btn btn-primary">Ver la mejor opcion</button>
+                </div>
+            </form>
+        </div>
+    
+    @if (ViewBag.Resultados != null)
+    {
+        <h4 style="text-align: center;">
+            Conjunto de elementos óptimos basado en que cumplan el mínimo de calorías requeridas y el llevar el menor peso posible
+        </h4>
+        <h2>Resultados:</h2>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Peso</th>
+                    <th>Calorias</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in ViewBag.Resultados)
+                {
+                    <tr>
+                        <td>@item.Nombre</td>
+                        <td>@item.Peso</td>
+                        <td>@item.Calorias</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+
+</body>
+</html>
+
