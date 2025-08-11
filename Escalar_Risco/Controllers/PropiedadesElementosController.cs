@@ -28,7 +28,7 @@ namespace Escalar_Risco.Controllers
         {
             List<PropiedadesElementos> elementos = _logicaBd.GetAllProducts();
 
-            // Definir la matriz de programación dinámica para el problema de la mochila pd: esta interesante el algoritmo
+            // Definir la matriz de programación dinámica para el problema de la mochila 
             int[,] dinamica = new int[elementos.Count + 1, valores.Peso + 1];
 
             // Llenar la matriz dp utilizando el algoritmo de la mochila
